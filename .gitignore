@@ -1,0 +1,9 @@
+.idea
+.env*
+!.env*.example
+node_modules
+
+dist
+build
+
+yarn-error.log
