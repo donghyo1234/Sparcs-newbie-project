@@ -1,50 +1,70 @@
 const express = require('express');
-const authMiddleware = require('../middleware/auth');
+const AccountModel = require('../models/account');
+
 
 const router = express.Router();
 
-class BankDB {
+class AuthDB {
     static _inst_;
     static getInst = () => {
-        if ( !BankDB._inst_ ) BankDB._inst_ = new BankDB();
-        return BankDB._inst_;
+        if ( !AuthDB._inst_ ) AuthDB._inst_ = new AuthDB();
+        return AuthDB._inst_;
     }
 
-    #total = 10000;
+    constructor() { console.log("[Auth-DB] DB Init Completed"); }
 
-    constructor() { console.log("[Bank-DB] DB Init Completed"); }
-
-    getBalance = () => {
-        return { success: true, data: this.#total };
+    register = async (username,password) => {
+        try {
+            const ee = await AccountModel.find({"username" : username}).count();
+            console.log(ee);
+            if (ee > 0 ){
+                return { success: false, data: '이미 있는 아이디입니다!' };
+            } else {
+                const newItem = new AccountModel({ username ,password});
+                const res = await newItem.save();
+                return { success: true, data: `${username}로 회원가입 했습니다!` };
+            }
+        } catch (e) {
+            return { success: false, data: `DB Error - ${ e }` };
+        }
     }
 
-    transaction = ( amount ) => {
-        this.#total += amount;
-        return { success: true, data: this.#total };
+    getBalance = async (username,password) => {
+        try {
+            const res = await AccountModel.findOne({ username,password });
+            return { success: true, data: `${res.username}로 로그인 했습니다!`};
+        } catch (e) {
+            return { success: false, data: `DB Error - ${ e }` };
+        }
     }
+
+
 }
 
-const bankDBInst = BankDB.getInst();
+const authDBInst = AuthDB.getInst();
 
-router.post('/getInfo', authMiddleware, (req, res) => {
+router.post('/register', async (req, res) =>{
     try {
-        const { success, data } = bankDBInst.getBalance();
-        if (success) return res.status(200).json({ balance: data });
+        const { success, data } = await authDBInst.register(req.body.username,req.body.password);
+        console.log(data);
+        if (success) return res.status(200).json({ msg: data });
         else return res.status(500).json({ error: data });
     } catch (e) {
         return res.status(500).json({ error: e });
     }
 });
 
-router.post('/transaction', authMiddleware, (req, res) => {
+router.post('/getInfo', async (req, res) => {
     try {
-        const { amount } = req.body;
-        const { success, data } = bankDBInst.transaction( parseInt(amount) );
-        if (success) res.status(200).json({ success: true, balance: data, msg: "Transaction success" });
-        else res.status(500).json({ error: data })
+        const { success, data } = await authDBInst.getBalance(req.body.username, req.body.password);
+        console.log(data);
+        if (success) return res.status(200).json({ msg: data });
+        else return res.status(500).json({ error: data });
     } catch (e) {
         return res.status(500).json({ error: e });
     }
-})
+});
+
+
 
 module.exports = router;

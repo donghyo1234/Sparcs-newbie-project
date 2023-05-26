@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const OSchemaDefinition = {
     title: String,
+    author: String,
     content: {
         type: String,
         default: "Input Content...",
@@ -15,7 +16,7 @@ const OSchemaOptions = { timestamps: true };
 
 const schema = new mongoose.Schema(OSchemaDefinition, OSchemaOptions);
 
-const FeedModel = mongoose.model("feed", schema);
+const PostModel = mongoose.model("post", schema);
 
-module.exports = FeedModel;
+module.exports = PostModel;
 

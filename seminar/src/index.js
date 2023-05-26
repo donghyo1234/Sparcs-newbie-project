@@ -5,9 +5,8 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const statusRouter = require('./routes/status');
-const feedRouter = require('./routes/feed');
+const postRouter = require('./routes/post');
 const accountRouter = require('./routes/account');
-const ssrRouter = require('./routes/ssr');
 
 const app = express();
 const port = process.env.PORT;
@@ -27,9 +26,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use('/status', statusRouter);
-app.use('/feed', feedRouter);
+app.use('/post', postRouter);
 app.use('/account', accountRouter);
-app.use('/ssr', ssrRouter);
+
 
 app.use('/static', express.static(path.join(__dirname,'public')));
 

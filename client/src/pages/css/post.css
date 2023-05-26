@@ -1,11 +1,11 @@
-.feed-list {
+.post-list {
     padding: 25px 10px;
     width: calc(100% - 20px);
     max-width: 800px;
     margin: auto;
 }
 
-.feed-item {
+.post-item {
     border: solid 1px rgba(0,0,0,0.2);
     border-radius: 15px;
     width: 100%;
@@ -13,10 +13,11 @@
     position: relative;
 }
 
-.feed-item-add {
+.post-item-add {
     border: dotted 1px black;
     border-radius: 15px;
-    padding: 20px 10px 0 10px;
+    padding: 10px 15px 10px 10px;
+    text-align: left;
 }
 
 .post-add-button {
@@ -30,6 +31,12 @@
     font-weight: 700;
 }
 
+.post-bddd{
+    font-size: 13px;
+    text-align: right;
+    margin: 10px;
+}
+
 .delete-item {
     position: absolute;
     right: 15px;
@@ -41,4 +48,17 @@
 .delete-item:hover {
     font-weight: bold;
     cursor: pointer;
+}
+
+.post-title-input {
+    width: 50%;
+    
+}
+
+#post-count-input {
+    width: 20%;
+}
+.post-content-input {
+    width: 100%;    
+    height: 300px;
 }

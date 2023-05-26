@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <div className={"footer"}>
       <div className={"footer-content-wrapper"}>
-        <div className={"footer-logo"}>SPARCS Newbie Seminar</div>
-        <div className={"footer-copyright"}>Powered with ♥️ by night@sparcs.org</div>
+        <div className={"footer-logo"}>SPARCS Newbie Project</div>
+        <div className={"footer-copyright"}>By articleb@sparcs.org</div>
       </div>
     </div>
   );
