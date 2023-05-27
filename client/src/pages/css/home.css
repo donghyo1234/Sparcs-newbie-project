@@ -49,6 +49,7 @@
     border-radius: 8px;
     background-color: white;
     animation: transform, box-shadow 100ms ease;
+    transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
 .page-link:hover {
@@ -83,8 +84,9 @@
     border: solid 1px rgba(0,0,0,0.5);
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 0 7px 0 rgba(0,0,0,0.4);  
+    box-shadow: 0 0 7px 0 rgba(0,0,0,0.2);  
     background-color: #fafafa;
+    transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
 .Authenticationclass input {
@@ -92,7 +94,12 @@
     width: 90%;
     margin: 5px auto;
     padding: 3px    ;
-    box-shadow: 0 0 7px 0 rgba(0,0,0,0.4);  
+    box-shadow: 0 0 7px 0 rgba(0,0,0,0.2);  
+}
+
+.Authenticationclass:hover{
+    
+    box-shadow: 0 0 7px 0 rgba(0,0,0,0.5);
 }
 button {
     width: 35%;
@@ -100,14 +107,19 @@ button {
     background-color:aliceblue;
     border: none;
     border-radius: 5px;
-    box-shadow: 0 0 7px 0 rgba(0,0,0,0.4);  
+    box-shadow: 0 0 7px 0 rgba(0,0,0,0.2);  
     margin: 5px;
+    transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
 .page-subtitle-ee{
     font-size: 20px;
     color: rgb(28, 25, 25);
     margin: 5px ;
+}
+button:hover{
+    box-shadow: 0 0 7px 0 rgba(0,0,0,0.4);
+
 }
 
 .page-subtitle-ed{

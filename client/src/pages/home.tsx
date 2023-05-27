@@ -120,7 +120,7 @@ const HomePage = (props: {}) => {
         <div className={"link-options"}>
           { Logged ? 
           
-          
+          <div>
           <div className="page-link">
             <div className={"page-subtitle"}>오운완</div>
           <h2>오늘의 운동을 공유하세요!</h2>
@@ -156,13 +156,25 @@ const HomePage = (props: {}) => {
           </div>
         </div>
           
+        </div>
           
           
-          : <div className={"page-link"} >
+          : <div><div className={"page-link"} >
             <div className={"page-subtitle"}>오운완</div>
             <div className={"page-title"}> 오늘의 운동을 공유하려면 먼저 로그인하세요</div>
+          </div>
           </div>}
+          {Logged ? <div className={"page-link"} >
+            <div className={"page-subtitle"}>순위표</div>
+            <div className={"page-title"}> 순위표를 확인하세요!</div>
+          </div>:<div className={"page-link"} >
+            <div className={"page-subtitle"}>순위표</div>
+            <div className={"page-title"}> 순위표를 확인하려면 먼저 로그인하세요</div>
+          </div>}
+
           
+
+         
 
         </div>
       </div>

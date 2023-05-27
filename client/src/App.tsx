@@ -4,7 +4,7 @@ import HomePage from "./pages/home";
 import PageNotFound from "./pages/404";
 import Footer from "./components/footer";
 import './App.css';
-import CatImagePage from "./pages/cat-image";
+
 
 
 const App = () => {
