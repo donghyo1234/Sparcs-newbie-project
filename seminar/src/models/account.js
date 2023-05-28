@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const OSchemaDefinition = {
 	username: String,
-	password: String
+	password: String,
 };
 const OSchemaOptions = { timestamps: true };
 

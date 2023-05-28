@@ -1,6 +1,6 @@
 const express = require('express');
 const AccountModel = require('../models/account');
-
+const account = require('./account');
 
 const router = express.Router();
 
@@ -29,12 +29,12 @@ class AuthDB {
         }
     }
 
-    getBalance = async (username,password) => {
+    getAccount = async (username,password) => {
         try {
             const res = await AccountModel.findOne({ username,password });
             return { success: true, data: `${res.username}로 로그인 했습니다!`};
         } catch (e) {
-            return { success: false, data: `DB Error - ${ e }` };
+            return { success: false, data: `해당 인증 정보가 가입되어 있지 않습니다!` };
         }
     }
 
@@ -47,8 +47,8 @@ router.post('/register', async (req, res) =>{
     try {
         const { success, data } = await authDBInst.register(req.body.username,req.body.password);
         console.log(data);
-        if (success) return res.status(200).json({ msg: data });
-        else return res.status(500).json({ error: data });
+        if (success) return res.status(200).json({success: success, msg: data });
+        else return res.status(200).json({ success: success, msg: data });
     } catch (e) {
         return res.status(500).json({ error: e });
     }
@@ -56,10 +56,10 @@ router.post('/register', async (req, res) =>{
 
 router.post('/getInfo', async (req, res) => {
     try {
-        const { success, data } = await authDBInst.getBalance(req.body.username, req.body.password);
+        const { success, data } = await authDBInst.getAccount(req.body.username, req.body.password);
         console.log(data);
-        if (success) return res.status(200).json({ msg: data });
-        else return res.status(500).json({ error: data });
+        if (success) return res.status(200).json({success: success, msg: data });
+        else return res.status(200).json({ success: success, msg: data });
     } catch (e) {
         return res.status(500).json({ error: e });
     }
