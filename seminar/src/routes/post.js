@@ -1,6 +1,5 @@
 const express = require('express');
 const PostModel = require('../models/post');
-const AccountModel = require('../models/account');
 const router = express.Router();
 
 class RankDB {
